@@ -1,4 +1,7 @@
+import pandas as pd
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 import csv
 
 #import the right packages here for linear regression and hypothesis testing
