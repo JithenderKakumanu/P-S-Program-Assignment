@@ -1,5 +1,9 @@
+import pandas as pd
 import numpy as np
+import seaborn as sns
 import csv
+from scipy import stats
+from sklearn.linear_model import LinearRegression
 
 #import the right packages here for logistic regression
 
@@ -67,24 +71,25 @@ class LogisticRegressor:
     def logisticRegression(self,X,y):
 
         #do logistic regression
-
-
+        logistic_regressor = LogisticRegression()  
+        reg=logistic_regressor.fit(X, y)
+        
         # obtain coefficient of determination
-
+        score = reg.score(X, y)     
 
         # obtain prediction parameters
-
+        params = reg.coef_
 
         # do prediction of testdata
-
+        y_pred = reg.predict(X)
         return reg, score, params, y_pred
 
     def computeResiduals(self,y_pred,y):
         # compute residuals
-
+        residuals = y - y_pred
         return residuals
 
     def predictNewObservations(self,lin_reg,X):
         # predict on new data
-
+        y_test_pred=lin_reg.predict(X)
         return y_test_pred
