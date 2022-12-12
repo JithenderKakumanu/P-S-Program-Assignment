@@ -1,6 +1,7 @@
 from LinearRegressor import LinearRegressor
 from LogisticRegressor import LogisticRegressor
 import os
+import matplotlib.pyplot as plt
 
 #import right packages for doing plotting
 
@@ -8,17 +9,18 @@ def sensorLocPredictionErrorHistogram(lin1_y_test_pred_err):
 
     #do plotting of histogram here
 
-
+    plt.hist(lin1_y_test_pred_err)
     plt.savefig("SensorLocLinearRegressionError.pdf")
     plt.clf()
 
 def linearAndLogisticRegressionErrorComparison(lin_y_test_pred_err,log_y_test_pred_err):
     # do plotting here
-
+    plt.hist(lin_y_test_pred_err)
     plt.savefig("WineQualityLinearRegressionError.pdf")
     plt.clf()
-
+    
     # do plotting here
+    plt.hist(log_y_test_pred_err)
     plt.savefig("WineQualityLogisticRegressionError.pdf")
     plt.clf()
 
@@ -27,7 +29,7 @@ def visualizeChlorineSulphateScatterPlot(X,path):
     sulphateData = X[:,9]
 
     # do plotting here
-
+    plt.scatter(chlorineData,sulphateData)
     plt.savefig(path)
     plt.clf()
 
@@ -35,7 +37,7 @@ def visualizeCitricAcidBoxPlot(X,path):
     citricAcidData = X[:, 2]
 
     # do plotting here
-
+    plt.boxplot(citricAcidData)
     plt.savefig(path)
     plt.clf()
 
@@ -43,7 +45,7 @@ def visualizeDensityHistogram(X,path):
     densityData = X[:, 7]
 
     # do plotting here
-
+    plt.hist(densityData)
     plt.savefig(path)
     plt.clf()
 
