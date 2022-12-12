@@ -3,6 +3,8 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import csv
+from scipy import stats
+from sklearn.linear_model import LinearRegression
 
 #import the right packages here for linear regression and hypothesis testing
 
@@ -109,59 +111,60 @@ class LinearRegressor:
 
     def linearRegression(self,X,y):
         #do linear regression
-
+        linear_regressor = LinearRegression()  
+        reg=linear_regressor.fit(X, y)
 
         #obtain coefficient of determination
-
+        score = reg.score(X, y)
 
         #obtain prediction parameters
-
+        params = reg.coef_
 
         #do prediction on data
-
+        y_pred = reg.predict(X)
 
         return reg,score,params,y_pred
 
     def computeResiduals(self,y_pred,y):
         # compute residuals
-
+        residuals = y - y_pred
         return residuals
 
     def computeSSE(self,residuals):
 
         #compute SSE
-
+        SSE=np.sum(np.square(residuals))
         return SSE
 
     def computeSSR(self,y_pred,y):
 
         #compute SSR
-
+        SSR=np.sum(np.square(y_pred-y))
         return SSR
 
     def computeFScore(self,alpha,k,n,p):
 
         #compute Fscore
-
+        f= stats.f.ppf(1-alpha,k-1,n,n-k)
         return f
 
     def computeFTestStatistic(self,y_pred,y,residuals,alpha,k,n,p):
 
         #compute test statistic
-
+        f_0=(np.sum(np.square(y_pred-y))/k)/(np.sum(np.square(residuals))/(n-(k+1)))
         #test statistic
         return f_0
 
     def computepValue(self,test_statistic,alpha,k,n,p):
 
         #compute p-value
-
+        pValue= 2*(1-f.cdf(test_statistic,alpha,k,n,n-k))
         return pValue
 
     def predictNewObservations(self,lin_reg,X):
 
         #predict new data
-
+        y_test_pred=lin_reg.predict(X)
         return y_test_pred
 
 
